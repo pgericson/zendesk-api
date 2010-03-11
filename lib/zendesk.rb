@@ -9,4 +9,5 @@ end
 require 'lib/zendesk/ticket'
 require 'lib/zendesk/user'
 require 'lib/zendesk/organization'
+require 'lib/zendesk/group'
 require 'lib/zendesk/main'
