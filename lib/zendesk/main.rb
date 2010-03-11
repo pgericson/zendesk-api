@@ -68,4 +68,5 @@ module Zendesk
   include Zendesk::User
   include Zendesk::Organization
   include Zendesk::Group
+  include Zendesk::Attachment
 end
