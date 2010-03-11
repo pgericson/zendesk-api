@@ -1,0 +1,13 @@
+README.markdown
+Rakefile
+lib/console.rb
+lib/zendesk-api.rb
+lib/zendesk.rb
+lib/zendesk/attachment.rb
+lib/zendesk/group.rb
+lib/zendesk/main.rb
+lib/zendesk/organization.rb
+lib/zendesk/ticket.rb
+lib/zendesk/user.rb
+zendesk-api.gemspec
+Manifest
