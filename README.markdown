@@ -4,9 +4,9 @@ Zendesk API
 The unofficial Ruby Library for interacting with the [Zendesk REST API](http://www.zendesk.com/api)
 
 ## Documentation & Requirements
-*ActiveResource gem
-*Curl
-*Curb gem
+ * ActiveResource gem
+ * Curl
+ * Curb gem
 
 ## What
 * Ruby wrapper around the Zendesk REST API
@@ -50,21 +50,6 @@ Not supported yet
     z.destroy_function_name(id)
 e.g.
     z.destroy_user(234)
-
-
-### Users
-#### Get list
-    z = Zendesk::Main.new('subdomain', 'username', 'password')
-    z.get_users
-#### Get list
-    z = Zendesk::Main.new('subdomain', 'username', 'password')
-    z.get_users
-#### Get list
-    z = Zendesk::Main.new('subdomain', 'username', 'password')
-    z.get_users
-#### Get list
-    z = Zendesk::Main.new('subdomain', 'username', 'password')
-    z.get_users
 
 
 ## Using The Zendesk Console
