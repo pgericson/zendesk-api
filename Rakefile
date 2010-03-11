@@ -2,7 +2,7 @@ require 'rubygems'
 require 'rake'
 require 'echoe'
 
-Echoe.new('zendesk-api', '0.1.2') do |p|
+Echoe.new('zendesk-api', '0.2.0') do |p|
   p.description     = "RubyGem wrapper for REST API to http://zendesk.com"
   p.author          = "Peter Ericson"
   p.url             = "http://github.com/pgericson/zendesk-api"

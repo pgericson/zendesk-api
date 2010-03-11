@@ -2,15 +2,15 @@
 
 Gem::Specification.new do |s|
   s.name = %q{zendesk-api}
-  s.version = "0.1.2"
+  s.version = "0.2.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 1.2") if s.respond_to? :required_rubygems_version=
   s.authors = ["Peter Ericson"]
   s.date = %q{2010-03-11}
   s.description = %q{RubyGem wrapper for REST API to http://zendesk.com}
   s.email = %q{pg.ericson@gmail.com}
-  s.extra_rdoc_files = ["README.markdown", "lib/console.rb", "lib/zendesk-api.rb", "lib/zendesk.rb", "lib/zendesk/attachment.rb", "lib/zendesk/group.rb", "lib/zendesk/main.rb", "lib/zendesk/organization.rb", "lib/zendesk/ticket.rb", "lib/zendesk/user.rb"]
-  s.files = ["README.markdown", "Rakefile", "lib/console.rb", "lib/zendesk-api.rb", "lib/zendesk.rb", "lib/zendesk/attachment.rb", "lib/zendesk/group.rb", "lib/zendesk/main.rb", "lib/zendesk/organization.rb", "lib/zendesk/ticket.rb", "lib/zendesk/user.rb", "zendesk-api.gemspec", "Manifest"]
+  s.extra_rdoc_files = ["README.markdown", "lib/console.rb", "lib/zendesk-api.rb", "lib/zendesk.rb", "lib/zendesk/attachment.rb", "lib/zendesk/entry.rb", "lib/zendesk/forum.rb", "lib/zendesk/group.rb", "lib/zendesk/main.rb", "lib/zendesk/organization.rb", "lib/zendesk/search.rb", "lib/zendesk/tag.rb", "lib/zendesk/ticket.rb", "lib/zendesk/user.rb"]
+  s.files = ["Manifest", "README.markdown", "Rakefile", "lib/console.rb", "lib/zendesk-api.rb", "lib/zendesk.rb", "lib/zendesk/attachment.rb", "lib/zendesk/entry.rb", "lib/zendesk/forum.rb", "lib/zendesk/group.rb", "lib/zendesk/main.rb", "lib/zendesk/organization.rb", "lib/zendesk/search.rb", "lib/zendesk/tag.rb", "lib/zendesk/ticket.rb", "lib/zendesk/user.rb", "zendesk-api.gemspec"]
   s.homepage = %q{http://github.com/pgericson/zendesk-api}
   s.rdoc_options = ["--line-numbers", "--inline-source", "--title", "Zendesk-api", "--main", "README.markdown"]
   s.require_paths = ["lib"]
