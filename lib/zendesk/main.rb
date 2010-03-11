@@ -1,3 +1,8 @@
+require 'lib/zendesk/ticket'
+require 'lib/zendesk/user'
+require 'lib/zendesk/organization'
+require 'lib/zendesk/group'
+require 'lib/zendesk/attachment'
 module Zendesk
   class Main
     attr_accessor :main_url, :format
@@ -58,15 +63,17 @@ module Zendesk
       end
 
       if curl.body_str == "<error>Couldn't authenticate you</error>"
-        return CouldNotAuthenticateYou
+        return "string" #raise CouldNotAuthenticateYou 
       end
       curl.body_str
     end
 
   end
-  include Zendesk.Ticket
-  include Zendesk.User
-  include Zendesk.Organization
-  include Zendesk.Group
-  include Zendesk.Attachment
+
+  
+  include Zendesk::Ticket
+  include Zendesk::User
+  include Zendesk::Organization
+  include Zendesk::Group
+  include Zendesk::Attachment
 end
