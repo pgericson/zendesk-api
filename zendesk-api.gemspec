@@ -1,22 +1,30 @@
-require 'rubygems'
-require 'rake'
+# -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = "zendesk-api"
+  s.name = %q{zendesk-api}
   s.version = "0.1.2"
- 
+
+  s.required_rubygems_version = Gem::Requirement.new(">= 1.2") if s.respond_to? :required_rubygems_version=
   s.authors = ["Peter Ericson"]
-  s.date = "2010-03-11"
-  s.description = "RubyGem wrapper for REST API to http://zendesk.com"
-  s.email = ["pg.ericson@gmail.com"]
-  s.files = FileList["[A-Z]*", "lib/**/*.rb"]
-  s.has_rdoc = false
+  s.date = %q{2010-03-11}
+  s.description = %q{RubyGem wrapper for REST API to http://zendesk.com}
+  s.email = %q{pg.ericson@gmail.com}
+  s.extra_rdoc_files = ["README.markdown", "lib/console.rb", "lib/zendesk-api.rb", "lib/zendesk.rb", "lib/zendesk/attachment.rb", "lib/zendesk/group.rb", "lib/zendesk/main.rb", "lib/zendesk/organization.rb", "lib/zendesk/ticket.rb", "lib/zendesk/user.rb"]
+  s.files = ["README.markdown", "Rakefile", "lib/console.rb", "lib/zendesk-api.rb", "lib/zendesk.rb", "lib/zendesk/attachment.rb", "lib/zendesk/group.rb", "lib/zendesk/main.rb", "lib/zendesk/organization.rb", "lib/zendesk/ticket.rb", "lib/zendesk/user.rb", "zendesk-api.gemspec", "Manifest"]
   s.homepage = %q{http://github.com/pgericson/zendesk-api}
-  #s.rdoc_options = ["--main", "README.markdown"]
+  s.rdoc_options = ["--line-numbers", "--inline-source", "--title", "Zendesk-api", "--main", "README.markdown"]
   s.require_paths = ["lib"]
   s.rubyforge_project = %q{zendesk-api}
   s.rubygems_version = %q{1.3.6}
-  s.summary = "RubyGem wrapper for REST API to http://zendesk.com"
+  s.summary = %q{RubyGem wrapper for REST API to http://zendesk.com}
 
-  s.add_dependency "curb", ">= 0.6.4"
+  if s.respond_to? :specification_version then
+    current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
+    s.specification_version = 3
+
+    if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
+    else
+    end
+  else
+  end
 end
