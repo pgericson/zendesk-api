@@ -1,4 +1,4 @@
-require 'lib/zendesk.rb'
+require 'zendesk-api'
 puts <<-TXT
 Stuff here to explain what it does
 TXT

@@ -64,9 +64,9 @@ module Zendesk
     end
 
   end
-  include Zendesk::Ticket
-  include Zendesk::User
-  include Zendesk::Organization
-  include Zendesk::Group
-  include Zendesk::Attachment
+  include Zendesk.Ticket
+  include Zendesk.User
+  include Zendesk.Organization
+  include Zendesk.Group
+  include Zendesk.Attachment
 end
