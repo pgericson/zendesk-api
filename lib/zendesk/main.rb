@@ -1,8 +1,3 @@
-require 'lib/zendesk/ticket'
-require 'lib/zendesk/user'
-require 'lib/zendesk/organization'
-require 'lib/zendesk/group'
-require 'lib/zendesk/attachment'
 module Zendesk
   class Main
     attr_accessor :main_url, :format
@@ -12,7 +7,6 @@ module Zendesk
       @account = account
       @username = username
       @password = password
-      puts
       if options[:format] && ['xml','json'].any?{|f| f == options[:format]}
         @format = options[:format]
       else
@@ -67,13 +61,5 @@ module Zendesk
       end
       curl.body_str
     end
-
   end
-
-  
-  include Zendesk::Ticket
-  include Zendesk::User
-  include Zendesk::Organization
-  include Zendesk::Group
-  include Zendesk::Attachment
 end
