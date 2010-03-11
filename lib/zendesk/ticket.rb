@@ -2,7 +2,7 @@ module Zendesk
   module Ticket
 
     def get_tickets(rule_id)
-      make_request("tickets")
+      make_request("rules/#{rule_id}")
     end
 
     def get_ticket(id)

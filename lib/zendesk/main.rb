@@ -62,10 +62,14 @@ module Zendesk
       curl.body_str
     end
 
-    include Zendesk::Ticket
     include Zendesk::User
     include Zendesk::Organization
     include Zendesk::Group
+    include Zendesk::Ticket
     include Zendesk::Attachment
+    include Zendesk::Tag
+    include Zendesk::Forum
+    include Zendesk::Entry
+    include Zendesk::Search
   end
 end
