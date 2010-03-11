@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.email = ["pg.ericson@gmail.com"]
   s.files = FileList["[A-Z]*", "lib/**/*.rb"]
   s.has_rdoc = false
-  s.homepage = %q{http://github.com/pgericson/zendesk-api http://www.zendesk.com/api}
+  s.homepage = %q{http://github.com/pgericson/zendesk-api}
   #s.rdoc_options = ["--main", "README.markdown"]
   s.require_paths = ["lib"]
   s.rubyforge_project = %q{zendesk-api}
