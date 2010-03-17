@@ -7,6 +7,7 @@ module Zendesk
       @account = account
       @username = username
       @password = password
+      @options = options
       if options[:format] && ['xml','json'].any?{|f| f == options[:format]}
         @format = options[:format]
       else
@@ -15,7 +16,7 @@ module Zendesk
     end
   
     def main_url
-      url_prefix    = "http://"
+      url_prefix    = @options[:ssl] ? "https://" : "http://"
       url_postfix   = ".zendesk.com/"
       url = url_prefix + @account + url_postfix
     end
