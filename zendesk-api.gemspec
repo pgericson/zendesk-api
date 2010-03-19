@@ -2,11 +2,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{zendesk-api}
-  s.version = "0.2.0"
+  s.version = "0.2.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 1.2") if s.respond_to? :required_rubygems_version=
   s.authors = ["Peter Ericson"]
-  s.date = %q{2010-03-11}
+  s.date = %q{2010-03-19}
   s.description = %q{RubyGem wrapper for REST API to http://zendesk.com}
   s.email = %q{pg.ericson@gmail.com}
   s.extra_rdoc_files = ["README.markdown", "lib/console.rb", "lib/zendesk-api.rb", "lib/zendesk.rb", "lib/zendesk/attachment.rb", "lib/zendesk/entry.rb", "lib/zendesk/forum.rb", "lib/zendesk/group.rb", "lib/zendesk/main.rb", "lib/zendesk/organization.rb", "lib/zendesk/search.rb", "lib/zendesk/tag.rb", "lib/zendesk/ticket.rb", "lib/zendesk/user.rb"]
