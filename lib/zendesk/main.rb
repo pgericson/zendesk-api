@@ -53,9 +53,8 @@ module Zendesk
           end.join("&")
           curl.url = curl.url + params
         end
-      else
-        curl.perform
       end
+      curl.perform
 
       if curl.body_str == "<error>Couldn't authenticate you</error>"
         return "string" #raise CouldNotAuthenticateYou 
@@ -65,9 +64,10 @@ module Zendesk
     
     class Response
       
-      attr_reader :status, :body, :headers_raw, :headers
+      attr_reader :status, :body, :headers_raw, :headers, :curl
       
       def initialize(curl)
+        @curl=curl
         @status=curl.response_code
         @body=curl.body_str
         @headers_raw=curl.header_str
@@ -76,6 +76,7 @@ module Zendesk
       
       def parse_headers
         hs={}
+        return hs if headers_raw.nil? or headers_raw==""
         headers_raw.split("\r\n")[1..-1].each do |h|
 #          Rails.logger.info h
           m=h.match(/([^:]+):\s?(.*)/)
