@@ -53,9 +53,8 @@ module Zendesk
           end.join("&")
           curl.url = curl.url + params
         end
-      else
-        curl.perform
       end
+      curl.perform
 
       if curl.body_str == "<error>Couldn't authenticate you</error>"
         return "string" #raise CouldNotAuthenticateYou 
