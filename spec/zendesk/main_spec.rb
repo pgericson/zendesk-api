@@ -1,7 +1,25 @@
 require "spec"
-require 'zendesk-api'
+require 'lib/zendesk-api'
 
-describe Zendesk::Main do
+describe Zendesk::Main, "basic" do
+  before(:each) do
+    @account = "this_account"
+    @username = "this_username"
+    @password = "this_password"
+    @zendesk = Zendesk::Main.new(@account, @username, @password)
+  end
+
+  it "should have the correct mail_url with no ssl options" do
+    @zendesk.main_url.should == "http://#{@account}.zendesk.com/"
+  end
+
+  it "should have the correct mail_url with ssl options" do
+    @zendesk = Zendesk::Main.new(@account, @username, @password, :ssl => true)
+    @zendesk.main_url.should == "https://#{@account}.zendesk.com/"
+  end
+end
+
+describe Zendesk::Main, 'make_request' do
   before do
     curl_object = Curl::Easy.method(:new)
     Curl::Easy.stub!(:new).and_return do |*args|

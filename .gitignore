@@ -3,3 +3,4 @@
 *.swo
 .idea/*
 *.orig
+pkg/*

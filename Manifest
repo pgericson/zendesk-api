@@ -1,6 +1,7 @@
 Manifest
 README.markdown
 Rakefile
+geminstaller.yml
 lib/console.rb
 lib/zendesk-api.rb
 lib/zendesk.rb
@@ -9,9 +10,11 @@ lib/zendesk/entry.rb
 lib/zendesk/forum.rb
 lib/zendesk/group.rb
 lib/zendesk/main.rb
+lib/zendesk/main.rb.orig
 lib/zendesk/organization.rb
 lib/zendesk/search.rb
 lib/zendesk/tag.rb
 lib/zendesk/ticket.rb
 lib/zendesk/user.rb
+spec/zendesk/main_spec.rb
 zendesk-api.gemspec
