@@ -8,13 +8,13 @@ module Zendesk
       @username = username
       @password = password
       @options = options
-      if options[:format] && ['xml','json'].any?{|f| f == options[:format]}
+      if options[:format] && ['xml', 'json'].any?{|f| f == options[:format]}
         @format = options[:format]
       else
         @format = 'xml'
       end
     end
-  
+
     def main_url
       url_prefix    = @options[:ssl] ? "https://" : "http://"
       url_postfix   = ".zendesk.com/"
@@ -26,32 +26,40 @@ module Zendesk
         input
       else
         input.to_xml({:root => function_name})
-      end 
+      end
     end
 
     def make_request(end_url, body = {})
       curl = Curl::Easy.new(main_url + end_url + ".#{@format}")
       curl.userpwd = "#{@username}:#{@password}"
       unless body.empty?
-        if body.values.first.is_a?(Hash)
-          final_body = body.values.first.to_xml
-        elsif body.values.first.is_a?(String)
-          final_body = body.values.first
-        end
-
-        if body[:create]
-          curl.headers = "Content-Type: application/xml"
-          curl.http_post(final_body)
-        elsif body[:update]
-          curl.headers = "Content-Type: application/xml"
-          curl.http_put(final_body)
-        elsif body[:destroy]
-          curl.http_delete(final_body)
-        elsif body[:list]
-          params = "?" + body[:list].to_a.map do |p|
-            "#{p[0]}=#{p[1]}"
+        if body[:list]
+          params = "?" + body[:list].map do |k, v|
+            if v.is_a?(Array)
+              v.map do |val|
+                "#{k}[]=#{val}"
+              end.join("&")
+            else
+              "#{k}=#{v}"
+            end
           end.join("&")
           curl.url = curl.url + params
+        else
+          if body.values.first.is_a?(Hash)
+            final_body = body.values.first.to_xml
+          elsif body.values.first.is_a?(String)
+            final_body = body.values.first
+          end
+
+          if body[:create]
+            curl.headers = "Content-Type: application/xml"
+            curl.http_post(final_body)
+          elsif body[:update]
+            curl.headers = "Content-Type: application/xml"
+            curl.http_put(final_body)
+          elsif body[:destroy]
+            curl.http_delete(final_body)
+          end
         end
       end
       curl.perform
@@ -61,19 +69,19 @@ module Zendesk
       end
       Response.new(curl)
     end
-    
+
     class Response
-      
+
       attr_reader :status, :body, :headers_raw, :headers, :curl
-      
+
       def initialize(curl)
-        @curl=curl
+        @curl = curl
         @status=curl.response_code
         @body=curl.body_str
         @headers_raw=curl.header_str
         parse_headers
       end
-      
+
       def parse_headers
         hs={}
         return hs if headers_raw.nil? or headers_raw==""
@@ -86,7 +94,7 @@ module Zendesk
         end
         @headers=hs
       end
-      
+
     end
 
     include Zendesk::User

@@ -1,3 +1,5 @@
 *.swp
 *.gem
 *.swo
+.idea/*
+*.orig
