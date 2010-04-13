@@ -58,7 +58,7 @@ module Zendesk
             curl.headers = "Content-Type: application/xml"
             curl.http_put(final_body)
           elsif body[:destroy]
-            curl.http_delete(final_body)
+            curl.http_delete
           end
         end
       end
