@@ -18,7 +18,7 @@ module Zendesk
     end
 
     def delete_entrie(id)
-      make_request("entries", :destroy => true)
+      make_request("entries/#{id}", :destroy => true)
     end
   end
 end
