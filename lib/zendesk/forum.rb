@@ -18,7 +18,7 @@ module Zendesk
     end
 
     def delete_forum(id)
-      make_request("forums", :destroy => true)
+      make_request("forums/#{id}", :destroy => true)
     end
   end
 end

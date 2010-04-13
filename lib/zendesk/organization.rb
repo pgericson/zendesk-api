@@ -18,7 +18,7 @@ module Zendesk
     end
 
     def delete_organization(id)
-      make_request("organizations", :destroy => true)
+      make_request("organizations/#{id}", :destroy => true)
     end
   end
 end

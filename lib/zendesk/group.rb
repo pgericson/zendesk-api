@@ -18,7 +18,7 @@ module Zendesk
     end
 
     def delete_group(id)
-      make_request("groups", :destroy => true)
+      make_request("groups/#{id}", :destroy => true)
     end
   end
 end

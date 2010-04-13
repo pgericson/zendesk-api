@@ -18,7 +18,7 @@ module Zendesk
     end
 
     def delete_ticket(id)
-      make_request("tickets", :destroy => true)
+      make_request("tickets/#{id}", :destroy => true)
     end
   end
 end

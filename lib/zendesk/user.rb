@@ -22,7 +22,7 @@ module Zendesk
     end
 
     def delete_user(id)
-      make_request("users", :destroy => true)
+      make_request("users/#{id}", :destroy => true)
     end
   end
 end
