@@ -17,8 +17,8 @@ module Zendesk
       make_request("users", :create => Zendesk::Main.to_xml('user', input))
     end
 
-    def update_user(input)
-      make_request("users", :update => Zendesk::Main.to_xml('user', input))
+    def update_user(id, input)
+      make_request("users/#{id}", :update => Zendesk::Main.to_xml('user', input))
     end
 
     def delete_user(id)

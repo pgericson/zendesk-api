@@ -29,24 +29,28 @@ module Zendesk
       end
     end
 
+
+    def params_list(list)
+      params = "?" + list.map do |k, v|
+        if v.is_a?(Array)
+          v.map do |val|
+            "#{k}[]=#{val}"
+          end.join("&")
+        else
+          "#{k}=#{v}"
+        end
+      end.join("&")
+    end
+
     def make_request(end_url, body = {})
       curl = Curl::Easy.new(main_url + end_url + ".#{@format}")
       curl.userpwd = "#{@username}:#{@password}"
       unless body.empty?
         if body[:list]
-          params = "?" + body[:list].map do |k, v|
-            if v.is_a?(Array)
-              v.map do |val|
-                "#{k}[]=#{val}"
-              end.join("&")
-            else
-              "#{k}=#{v}"
-            end
-          end.join("&")
-          curl.url = curl.url + params
+          curl.url = curl.url + params_list(body[:list])
         else
           if body.values.first.is_a?(Hash)
-            final_body = body.values.first.to_xml
+            final_body = body.values.first.to_xml.strip
           elsif body.values.first.is_a?(String)
             final_body = body.values.first
           end
@@ -55,8 +59,11 @@ module Zendesk
             curl.headers = "Content-Type: application/xml"
             curl.http_post(final_body)
           elsif body[:update]
-            curl.headers = "Content-Type: application/xml"
-            curl.http_put(final_body)
+            # PUT seems badly broken, at least I can't get it to work without always
+            # raising an exception about rewinding the data stream
+            # curl.http_put(final_body)
+            curl.headers = { "Content-Type" => "application/xml", "X-Http-Method-Override" => "put" }    
+            curl.http_post(final_body)            
           elsif body[:destroy]
             curl.http_delete
           end
@@ -72,13 +79,14 @@ module Zendesk
 
     class Response
 
-      attr_reader :status, :body, :headers_raw, :headers, :curl
+      attr_reader :status, :body, :headers_raw, :headers, :curl, :url
 
       def initialize(curl)
         @curl = curl
-        @status=curl.response_code
-        @body=curl.body_str
-        @headers_raw=curl.header_str
+        @url = curl.url
+        @status = curl.response_code
+        @body = curl.body_str
+        @headers_raw = curl.header_str
         parse_headers
       end
 
