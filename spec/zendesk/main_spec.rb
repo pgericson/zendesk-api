@@ -24,7 +24,7 @@ describe Zendesk::Main, 'make_request' do
     curl_object = Curl::Easy.method(:new)
     Curl::Easy.stub!(:new).and_return do |*args|
       curl = curl_object.call(*args)
-      curl.stub!(:perform)
+      curl.should_receive(:perform)
       curl.stub!(:header_str) { "adsf\r\ndsaf"}
       curl
     end
@@ -38,10 +38,10 @@ describe Zendesk::Main, 'make_request' do
     }
 
     response = zendesk.make_request("search", :list => params)
-    response.curl.url.should =~ /foo=bar/
-    response.curl.url.should =~ /foo_list\[\]=1/
-    response.curl.url.should =~ /foo_list\[\]=2/
-    response.curl.url.should =~ /foo_list\[\]=3/
+    response.url.should =~ /foo=bar/
+    response.url.should =~ /foo_list\[\]=1/
+    response.url.should =~ /foo_list\[\]=2/
+    response.url.should =~ /foo_list\[\]=3/
 
   end
 end

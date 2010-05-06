@@ -41,35 +41,33 @@ module Zendesk
         end
       end.join("&")
     end
+    
+    def string_body(body)
+      if body.values.first.is_a?(Hash)
+        body.values.first.to_xml.strip
+      elsif body.values.first.is_a?(String)
+        body.values.first
+      end
+    end
 
     def make_request(end_url, body = {})
       curl = Curl::Easy.new(main_url + end_url + ".#{@format}")
       curl.userpwd = "#{@username}:#{@password}"
-      unless body.empty?
-        if body[:list]
-          curl.url = curl.url + params_list(body[:list])
-        else
-          if body.values.first.is_a?(Hash)
-            final_body = body.values.first.to_xml.strip
-          elsif body.values.first.is_a?(String)
-            final_body = body.values.first
-          end
-
-          if body[:create]
-            curl.headers = "Content-Type: application/xml"
-            curl.http_post(final_body)
-          elsif body[:update]
-            # PUT seems badly broken, at least I can't get it to work without always
-            # raising an exception about rewinding the data stream
-            # curl.http_put(final_body)
-            curl.headers = { "Content-Type" => "application/xml", "X-Http-Method-Override" => "put" }    
-            curl.http_post(final_body)            
-          elsif body[:destroy]
-            curl.http_delete
-          end
-        end
+      if body.empty? or body[:list]
+        curl.url = curl.url + params_list(body[:list]) if body[:list]
+        curl.perform
+      elsif body[:create]
+        curl.headers = "Content-Type: application/xml"
+        curl.http_post(string_body(body))
+      elsif body[:update]
+        # PUT seems badly broken, at least I can't get it to work without always
+        # raising an exception about rewinding the data stream
+        # curl.http_put(final_body)
+        curl.headers = { "Content-Type" => "application/xml", "X-Http-Method-Override" => "put" }    
+        curl.http_post(string_body(body))
+      elsif body[:destroy]
+        curl.http_delete
       end
-      curl.perform
 
       if curl.body_str == "<error>Couldn't authenticate you</error>"
         return "string" #raise CouldNotAuthenticateYou 
