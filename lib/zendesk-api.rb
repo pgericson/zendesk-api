@@ -1,6 +1,6 @@
 require 'rubygems'
 require 'curb'
-require 'activeresource'
+require 'active_resource'
 
 module Zendesk
   class Error < StandardError; end
