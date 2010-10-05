@@ -1,15 +1,6 @@
 Zendesk API
 ------------
 
-## Why the Fork? ##
-
-The current zendesk-api gem doesn't work with activeresource 3.0.0. After some poking around, I have installed a complicated algorithm to solve this problem once and for all!
-
-I changed require 'activeresource' to require 'active_resource'.
-
-
-
-
 The unofficial Ruby Library for interacting with the [Zendesk REST API](http://www.zendesk.com/api)
 
 ## Documentation & Requirements
