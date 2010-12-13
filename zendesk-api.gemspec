@@ -2,11 +2,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{zendesk-api}
-  s.version = "0.3.1"
+  s.version = "0.3.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 1.2") if s.respond_to? :required_rubygems_version=
   s.authors = ["Peter Ericson"]
-  s.date = %q{2010-10-05}
+  s.date = %q{2010-12-13}
   s.description = %q{RubyGem wrapper for REST API to http://zendesk.com}
   s.email = %q{pg.ericson@gmail.com}
   s.extra_rdoc_files = ["README.markdown", "lib/console.rb", "lib/zendesk-api.rb", "lib/zendesk.rb", "lib/zendesk/attachment.rb", "lib/zendesk/entry.rb", "lib/zendesk/forum.rb", "lib/zendesk/group.rb", "lib/zendesk/main.rb", "lib/zendesk/organization.rb", "lib/zendesk/search.rb", "lib/zendesk/tag.rb", "lib/zendesk/ticket.rb", "lib/zendesk/user.rb"]
@@ -23,8 +23,14 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
+      s.add_runtime_dependency(%q<crack>, [">= 0.1.8"])
+      s.add_runtime_dependency(%q<activesupport>, [">= 2.3"])
     else
+      s.add_dependency(%q<crack>, [">= 0.1.8"])
+      s.add_dependency(%q<activesupport>, [">= 2.3"])
     end
   else
+    s.add_dependency(%q<crack>, [">= 0.1.8"])
+    s.add_dependency(%q<activesupport>, [">= 2.3"])
   end
 end
