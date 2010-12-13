@@ -56,6 +56,9 @@ module Zendesk
       if body.empty? or body[:list]
         curl.url = curl.url + params_list(body[:list]) if body[:list]
         curl.perform
+      elsif body[:post]
+        curl.headers = "Content-Type: application/xml"
+        curl.http_post 
       elsif body[:create]
         curl.headers = "Content-Type: application/xml"
         curl.http_post(string_body(body))
@@ -72,20 +75,23 @@ module Zendesk
       if curl.body_str == "<error>Couldn't authenticate you</error>"
         return "string" #raise CouldNotAuthenticateYou 
       end
-      Response.new(curl)
+      Response.new(curl, format)
     end
 
     class Response
 
-      attr_reader :status, :body, :headers_raw, :headers, :curl, :url
+      attr_reader :status, :body, :headers_raw, :headers, :curl, :url, :data
 
-      def initialize(curl)
+      def initialize(curl, format)
+        @format=format
         @curl = curl
         @url = curl.url
         @status = curl.response_code
         @body = curl.body_str
         @headers_raw = curl.header_str
         parse_headers
+        # parse the data coming back
+        @data = Crack::XML.parse(@body) if @format == "xml"
       end
 
       def parse_headers
@@ -104,6 +110,7 @@ module Zendesk
     end
 
     include Zendesk::User
+    include Zendesk::UserIdentity
     include Zendesk::Organization
     include Zendesk::Group
     include Zendesk::Ticket

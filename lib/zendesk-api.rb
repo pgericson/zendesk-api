@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'curb'
+require 'crack'
 require 'active_resource'
 
 module Zendesk
@@ -8,6 +9,7 @@ module Zendesk
 end
 
 require 'zendesk/user'
+require 'zendesk/user_identity'
 require 'zendesk/organization'
 require 'zendesk/group'
 require 'zendesk/ticket'
