@@ -4,3 +4,5 @@
 .idea/*
 *.orig
 pkg/*
+
+test.rb
