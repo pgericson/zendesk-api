@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.version = "0.3.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 1.2") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Peter Ericson"]
+  s.authors = ["Peter Glerup Ericson"]
   s.date = %q{2010-12-13}
   s.description = %q{RubyGem wrapper for REST API to http://zendesk.com}
   s.email = %q{pg.ericson@gmail.com}
