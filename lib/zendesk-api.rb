@@ -1,7 +1,11 @@
 require 'rubygems'
 require 'curb'
 require 'crack'
-require 'active_resource'
+gem 'activesupport'
+require 'active_support'
+require 'active_support/version'
+# need to pull in the pieces we want with Rails 3
+require 'active_support/core_ext' if ActiveSupport::VERSION::MAJOR == 3
 
 module Zendesk
   class Error < StandardError; end
