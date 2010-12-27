@@ -15,5 +15,6 @@ lib/zendesk/search.rb
 lib/zendesk/tag.rb
 lib/zendesk/ticket.rb
 lib/zendesk/user.rb
+lib/zendesk/user_identity.rb
 spec/zendesk/main_spec.rb
 spec/zendesk/user_spec.rb
