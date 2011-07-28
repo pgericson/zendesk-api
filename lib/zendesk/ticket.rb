@@ -9,12 +9,12 @@ module Zendesk
       make_request("tickets/#{id}")
     end
 
-    def create_ticket(input)
-      make_request("tickets", :create => Zendesk::Main.to_xml('ticket', input))
+    def create_ticket(input, options = {})
+      make_request("tickets", {:create => Zendesk::Main.to_xml('ticket', input)}, options)
     end
 
-    def update_ticket(input)
-      make_request("tickets", :update => Zendesk::Main.to_xml('ticket', input))
+    def update_ticket(id, input, options = {})
+      make_request("tickets/#{id}", {:update => Zendesk::Main.to_xml('ticket', input)}, options)
     end
 
     def delete_ticket(id)
