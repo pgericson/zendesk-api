@@ -1,5 +1,5 @@
 require "spec"
-require 'lib/zendesk-api'
+require 'zendesk-api'
 
 describe Zendesk::Main, 'user api' do
   # before do

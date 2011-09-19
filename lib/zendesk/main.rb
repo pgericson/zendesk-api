@@ -50,23 +50,29 @@ module Zendesk
       end
     end
 
-    def make_request(end_url, body = {})
+    def make_request(end_url, body = {}, options = {})
+      options.reverse_merge!({:on_behalf_of => nil})
+      
       curl = Curl::Easy.new(main_url + end_url + ".#{@format}")
       curl.userpwd = "#{@username}:#{@password}"
+      
+      curl.headers={}
+      curl.headers.merge!({"X-On-Behalf-Of" => options[:on_behalf_of]}) if options[:on_behalf_of].present?
+      
       if body.empty? or body[:list]
         curl.url = curl.url + params_list(body[:list]) if body[:list]
         curl.perform
       elsif body[:post]
-        curl.headers = "Content-Type: application/xml"
+        curl.headers.merge!({"Content-Type" => "application/xml"})
         curl.http_post 
       elsif body[:create]
-        curl.headers = "Content-Type: application/xml"
+        curl.headers.merge!({"Content-Type" => "application/xml"})
         curl.http_post(string_body(body))
       elsif body[:update]
         # PUT seems badly broken, at least I can't get it to work without always
         # raising an exception about rewinding the data stream
         # curl.http_put(final_body)
-        curl.headers = { "Content-Type" => "application/xml", "X-Http-Method-Override" => "put" }    
+        curl.headers.merge!({ "Content-Type" => "application/xml", "X-Http-Method-Override" => "put" })  
         curl.http_post(string_body(body))
       elsif body[:destroy]
         curl.http_delete
@@ -119,5 +125,6 @@ module Zendesk
     include Zendesk::Forum
     include Zendesk::Entry
     include Zendesk::Search
+    include Zendesk::Comment
   end
 end
