@@ -17,7 +17,7 @@ module Zendesk
 
     def main_url
       url_prefix    = @options[:ssl] ? "https://" : "http://"
-      url_postfix   = ".zendesk.com/"
+      url_postfix   = ".zendesk.com/api/v1/"
       url = url_prefix + @account + url_postfix
     end
 
