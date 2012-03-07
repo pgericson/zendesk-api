@@ -4,5 +4,7 @@
 .idea/*
 *.orig
 pkg/*
+.rvmrc
 
 test.rb
+
