@@ -1,0 +1,158 @@
+<!doctype html>
+<!-- The Time Machine GitHub pages theme was designed and developed by Jon Rohan, on Feb 7, 2012. -->
+<!-- Follow him for fun. http://twitter.com/jonrohan. Tail his code on http://github.com/jonrohan -->
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen"/>
+  <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/script.js"></script>
+
+  <title>Zendesk-api</title>
+  <meta name="description" content="A Ruby gem to interact with the Zendesk API">
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <header>
+      <h1 class="title">Zendesk-api</h1>
+    </header>
+    <div id="container">
+      <p class="tagline">A Ruby gem to interact with the Zendesk API</p>
+      <div id="main" role="main">
+        <div class="download-bar">
+        <div class="inner">
+          <a href="https://github.com/pgericson/zendesk-api/tarball/master" class="download-button tar"><span>Download</span></a>
+          <a href="https://github.com/pgericson/zendesk-api/zipball/master" class="download-button zip"><span>Download</span></a>
+          <a href="https://github.com/pgericson/zendesk-api" class="code">fork Zendesk-api on GitHub</a>
+        </div>
+        <span class="blc"></span><span class="trc"></span>
+        </div>
+        <article class="markdown-body">
+          <h2>Zendesk API</h2>
+
+<p>The unofficial Ruby Library for interacting with the <a href="http://www.zendesk.com/api">Zendesk REST API</a></p>
+
+<h2>Documentation &amp; Requirements</h2>
+
+<ul>
+<li>ActiveResource gem</li>
+<li>Curl</li>
+<li>Curb gem</li>
+</ul><h2>What</h2>
+
+<ul>
+<li>Ruby wrapper around the Zendesk REST API</li>
+</ul><h2>Install Instructions</h2>
+
+<p>Normal install:</p>
+
+<pre><code>gem install zendesk-api
+</code></pre>
+
+<p>Bundler install:</p>
+
+<pre><code>gem "zendesk-api", "latestversion"
+</code></pre>
+
+<h2>How to use it</h2>
+
+<h3>Basic</h3>
+
+<p>Below outputs xml</p>
+
+<pre><code>z = Zendesk::Main.new('subdomain', 'username', 'password')
+</code></pre>
+
+<p>and outputs json</p>
+
+<pre><code>z = Zendesk::Main.new('subdomain', 'username', 'password', :format =&gt; 'json')
+</code></pre>
+
+<p>For the most part all functions is based on the following functions
+REST function_names = %{user, organization, group, ticket,attachement, tag, forum, entries, search}</p>
+
+<h3>Show</h3>
+
+<pre><code>z.get_function_name(user_id)
+</code></pre>
+
+<p>e.g.</p>
+
+<pre><code>z.get_user(121)
+</code></pre>
+
+<h3>List</h3>
+
+<pre><code>z.get_function_names #with a s in the end, for plural
+</code></pre>
+
+<p>e.g.</p>
+
+<pre><code>z.get_users
+</code></pre>
+
+<h3>Create</h3>
+
+<p>with string</p>
+
+<pre><code>z.create_function_name("&lt;user&gt;&lt;email&gt;email@company.com&lt;/email&gt;&lt;name&gt;John Doe&lt;/name&gt;&lt;/user&gt;")
+</code></pre>
+
+<p>with hash(array is not supported yet)</p>
+
+<pre><code>z.create_function_name({:email =&gt; 'email@company.com', :name =&gt; 'John Doe'})
+</code></pre>
+
+<h3>Update</h3>
+
+<p>Not supported yet</p>
+
+<h3>Destroy</h3>
+
+<pre><code>z.destroy_function_name(id)
+</code></pre>
+
+<p>e.g.</p>
+
+<pre><code>z.destroy_user(234)
+</code></pre>
+
+<h2>Using The Zendesk Console</h2>
+
+<p>The Zendesk library comes with a convenient console for testing and quick commands (or whatever else you want to use it for).</p>
+
+<p>From /</p>
+
+<pre><code>irb -r lib/zendesk/console
+z = Zendesk::Main.new('accountname', 'username', 'password')
+z.get_users
+</code></pre>
+        </article>
+      </div>
+    </div>
+    <footer>
+      <div class="owner">
+      <p><a href="https://github.com/pgericson" class="avatar"><img src="https://secure.gravatar.com/avatar/f8c91f073dcf5687c9c17ef4926885ff?s=30&amp;d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png" width="48" height="48"/></a> <a href="https://github.com/pgericson">pgericson</a> maintains <a href="https://github.com/pgericson/zendesk-api">Zendesk-api</a></p>
+      </div>
+      <div class="creds">
+        <small>This page generated using <a href="https://pages.github.com/">GitHub Pages</a><br/>theme by <a href="http://twitter.com/jonrohan/">Jon Rohan</a></small>
+      </div>
+    </footer>
+  </div>
+  <div class="current-section">
+    <a href="#top">Scroll to top</a>
+    <a href="https://github.com/pgericson/zendesk-api/tarball/master" class="tar">tar</a><a href="https://github.com/pgericson/zendesk-api/zipball/master" class="zip">zip</a><a href="" class="code">source code</a>
+    <p class="name"></p>
+  </div>
+
+  
+</body>
+</html>
