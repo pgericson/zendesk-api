@@ -18,6 +18,11 @@ describe Zendesk::Main do
       @zendesk = Zendesk::Main.new(@account, @username, @password, :ssl => true)
       @zendesk.main_url.should == "https://#{@account}.zendesk.com/"
     end
+
+    it "should add the api version to the URL if one is specified" do
+      @zendesk = Zendesk::Main.new(@account, @username, @password, :ssl => true, :api_version => 1)
+      @zendesk.main_url.should == "https://#{@account}.zendesk.com/api/v1/"
+    end
   end
 
   describe 'make_request' do
