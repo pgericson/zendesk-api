@@ -74,3 +74,9 @@ From /
     irb -r lib/zendesk/console
     z = Zendesk::Main.new('accountname', 'username', 'password')
     z.get_users
+
+## License
+
+The Zendesk library is released under the MIT license:
+
+* http://www.opensource.org/licenses/MIT
