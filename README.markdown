@@ -3,6 +3,8 @@ Zendesk API
 
 The unofficial Ruby Library for interacting with the [Zendesk REST API](http://www.zendesk.com/api)
 
+Looking for a new head maintainer, since I do not use zendesk anymore.
+
 ## Documentation & Requirements
  * ActiveResource gem
  * Curl
