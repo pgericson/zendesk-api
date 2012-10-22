@@ -1,5 +1,5 @@
 require "spec"
-require 'zendesk-api'
+require 'zendesk_api'
 
 describe Zendesk::Main, 'user api' do
   # before do
@@ -34,40 +34,40 @@ describe Zendesk::Main, 'user api' do
       body=Zendesk::Main.to_xml('user', data)
       curl.should_receive(:http_post).with(body)
       curl.stub!(:header_str) { "\r\ntest: blah"}
-      curl.stub!(:response_code).and_return(200)      
+      curl.stub!(:response_code).and_return(200)
       curl
-    end    
+    end
     zendesk = Zendesk::Main.new('my_company', "some_login", "some_password")
     response = zendesk.update_user(39,data)
     response.curl.headers["X-Http-Method-Override"].should == "put"
     response.url.should =~ %r{/users/39.xml$}
     response.status.should == 200
   end
-  
-  it "should be able to get" do 
+
+  it "should be able to get" do
     curl_object = Curl::Easy.method(:new)
     Curl::Easy.stub!(:new).and_return do |*args|
       curl = curl_object.call(*args)
       curl.stub!(:perform)
       curl.stub!(:header_str) { "\r\ntest: blah"}
-      curl.stub!(:response_code).and_return(200)      
+      curl.stub!(:response_code).and_return(200)
       curl
-    end    
+    end
     zendesk = Zendesk::Main.new('my_company', "some_login", "some_password")
     response = zendesk.get_user(13)
     response.url.should =~ %r{/users/13.xml$}
     response.status.should == 200
   end
-  
+
   it "should be able to list all" do
     curl_object = Curl::Easy.method(:new)
     Curl::Easy.stub!(:new).and_return do |*args|
       curl = curl_object.call(*args)
       curl.stub!(:perform)
       curl.stub!(:header_str) { "\r\ntest: blah"}
-      curl.stub!(:response_code).and_return(200)      
+      curl.stub!(:response_code).and_return(200)
       curl
-    end    
+    end
     zendesk = Zendesk::Main.new('my_company', "some_login", "some_password")
     response = zendesk.get_users
     response.url.should =~ %r{/users.xml$}
@@ -80,10 +80,10 @@ describe Zendesk::Main, 'user api' do
       curl = curl_object.call(*args)
       curl.stub!(:http_delete)
       curl.stub!(:perform)
-      curl.stub!(:response_code).and_return(200)      
+      curl.stub!(:response_code).and_return(200)
       curl.stub!(:header_str) { "\r\nadsf\r\ndsaf"}
       curl
-    end    
+    end
     zendesk = Zendesk::Main.new('my_company', "some_login", "some_password")
     response = zendesk.delete_user(12)
     response.url.should =~ %r{/users/12.xml}

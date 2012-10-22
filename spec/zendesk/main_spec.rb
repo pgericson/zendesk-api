@@ -1,5 +1,5 @@
 require "spec"
-require 'zendesk-api'
+require 'zendesk_api'
 
 describe Zendesk::Main do
   describe "basic" do
@@ -106,7 +106,7 @@ describe Zendesk::Main do
   describe "#self.to_xml" do
     context "comments" do
       it "should output correctly formatted XML" do
-        input = {"value" => "new comment", "public" => true}
+        input = {"public" => true,"value" => "new comment"}
         xml = Zendesk::Main.to_xml('comment', input)
         xml.should =~ /<comment>\s*<public type=\"boolean\">true<\/public>\s*<value>new comment<\/value>\s*<\/comment>/
       end
@@ -114,7 +114,7 @@ describe Zendesk::Main do
 
     context "tickets" do
       it "should output correctly formatted XML" do
-        input = {"subject" => "rspec rulez", "description" => "description", "status_id"=>1}
+        input = {"subject" => "rspec rulez","status_id"=>1,"description" => "description"}
         xml = Zendesk::Main.to_xml('ticket', input)
         xml.should =~ /<ticket>\s*<subject>rspec rulez<\/subject>\s*<status-id type=\"integer\">1<\/status-id>\s*<description>description<\/description>\s*<\/ticket>/
       end
