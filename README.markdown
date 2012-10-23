@@ -22,6 +22,19 @@ Bundler install:
 
     gem "zendesk-api", "latestversion"
 
+## Supported v1 Endpoints
+
+* Attachments
+* Comments
+* Entries
+* Forums
+* Groups
+* Organizations
+* Search
+* Tags
+* Tickets
+* Users
+
 ## How to use it
 ### Basic
 Below outputs xml
