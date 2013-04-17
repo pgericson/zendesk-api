@@ -1,3 +1,16 @@
+THIS GEM IS DEPRECATED!!!
+------------
+USE THE OFFICIAL GEM FROM ZENDESK
+------------
+[zendesk_api gem from zendesk](https://github.com/zendesk/zendesk_api_client_rb)
+------------
+
+
+THIS GEM WILL NOT BE UPDATED
+------------
+
+old documentation below
+
 Zendesk API
 ------------
 
